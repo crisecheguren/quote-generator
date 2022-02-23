@@ -40,7 +40,10 @@ function newQuote() {
     } else {
         quoteText.classList.remove('long-quote');
     }
+    //show quote
     quoteText.textContent = quote.text;
+
+    //stop loading
     complete();
 }
 
@@ -54,7 +57,7 @@ async function getQuotes() {
         apiQuotes = await response.json();
         newQuote();
     } catch(error) {
-
+        console.log("whoops, no quotes", error)
     }
 }
 
