@@ -10,21 +10,21 @@ const loader = document.getElementById('loader')
 let apiQuotes = [];
 
 
-// show loading
-function loading() {
+
+function showLoadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-// hide loading
-function complete() {
+
+function removeLoadingSpinner() {
     loader.hidden = true;
     quoteContainer.hidden = false;
 }
 
 // show new quote
 function newQuote() {
-    loading();
+    showLoadingSpinner();
     // Pick a random quote from apiQuotes array
     const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
     // check if author field is blank and replace it with 'Unknown'
@@ -44,13 +44,13 @@ function newQuote() {
     quoteText.textContent = quote.text;
 
     //stop loading
-    complete();
+    removeLoadingSpinner();
 }
 
 
 // get quotes from API
 async function getQuotes() {
-    loading();
+    showLoadingSpinner();
     const apiUrl = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiUrl);
