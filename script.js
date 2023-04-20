@@ -51,8 +51,12 @@ function newQuote() {
 // get quotes from API
 async function getQuotes() {
     showLoadingSpinner();
-    const apiUrl = 'https://type.fit/api/quotes';
-    try {
+     try {
+        const apiUrl = await fetch('https://crisecheguren.com/keys')
+            .then(response => response.json())
+            .then(data => {
+                return data.quoteKey;
+            });
         const response = await fetch(apiUrl);
         apiQuotes = await response.json();
         newQuote();
